@@ -13,6 +13,8 @@
 	<properties>
 		<spring.version>4.1.7.RELEASE</spring.version>
 		<vertx.version>3.0.0</vertx.version>
+		<jodd.version>3.6.6</jodd.version>
+		<testng.version>6.9.4</testng.version>
 
 		<!-- 文件拷贝时的编码 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,11 +26,12 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>${testng.version}</version>
 			<scope>test</scope>
 		</dependency>
+
 		<!-- Spring start -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -142,9 +145,14 @@
 		<dependency>
 			<groupId>org.jodd</groupId>
 			<artifactId>jodd-core</artifactId>
-			<version>3.6.6</version>
+			<version>${jodd.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.jodd</groupId>
+			<artifactId>jodd-http</artifactId>
+			<version>${jodd.version}</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>birthday-email</finalName>

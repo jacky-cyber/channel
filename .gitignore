@@ -51,3 +51,4 @@ channel-manager/.settings/.jsdtscope
 channel-manager/.settings/org.eclipse.wst.jsdt.ui.superType.name
 channel-manager/.settings/org.eclipse.wst.common.component
 channel-manager/.settings/org.eclipse.wst.common.project.facet.core.xml
+*.log
