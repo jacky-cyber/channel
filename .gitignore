@@ -43,3 +43,11 @@ Temporary Items
 .apdisk
 *.classpath
 channel-server/.project
+*.project
+channel-api/.settings/org.eclipse.jdt.core.prefs
+*.prefs
+channel-manager/.settings/.jsdtscope
+*.container
+channel-manager/.settings/org.eclipse.wst.jsdt.ui.superType.name
+channel-manager/.settings/org.eclipse.wst.common.component
+channel-manager/.settings/org.eclipse.wst.common.project.facet.core.xml
