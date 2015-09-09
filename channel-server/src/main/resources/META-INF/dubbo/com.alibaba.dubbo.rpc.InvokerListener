@@ -1,0 +1,1 @@
+service=com.zjht.channel.service.impl.dubbo.listener.ServiceInvokerListener
