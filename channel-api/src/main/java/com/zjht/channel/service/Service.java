@@ -21,13 +21,13 @@ import java.util.Map;
  */
 public interface Service {
 
-    /**
-     * 具体业务处理逻辑的方法. <br/>
-     * 
-     * @author jun yangwenjun@chinaexpresscard.com
-     * @param params
-     * @return String json字符串 按照接口约定返回，这里只需返回具体内容
-     * @since JDK 1.8
-     */
+	/**
+	 * 具体业务处理逻辑的方法. <br/>
+	 * 
+	 * @author jun yangwenjun@chinaexpresscard.com
+	 * @param params
+	 * @return 
+	 * @since JDK 1.8
+	 */
     Map<String,Object> handle(Map<String, String> params);
 }
