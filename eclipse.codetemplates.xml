@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><templates><template autoinsert="false" context="typecomment_context" deleted="false" description="Comment for created types" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.typecomment" name="typecomment">/** &#13;
+ * ClassName: ${type_name} &lt;br/&gt; &#13;
+ * Function: ${todo} ADD FUNCTION. &lt;br/&gt; &#13;
+ * date: ${date} ${time} &lt;br/&gt; &#13;
+ * &#13;
+ * @author jun yangwenjun@chinaexpresscard.com &#13;
+ * @version v0.1&#13;
+ * @since JDK 1.8&#13;
+ */  </template><template autoinsert="false" context="constructorcomment_context" deleted="false" description="Comment for created constructors" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.constructorcomment" name="constructorcomment">/** &#13;
+ * Creates a new instance of ${enclosing_type}. &#13;
+ * &#13;
+ * ${tags} &#13;
+ */  </template><template autoinsert="false" context="settercomment_context" deleted="false" description="Comment for setter method" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.settercomment" name="settercomment">/** &#13;
+ * ${param}. &#13;
+ * &#13;
+ * @param   ${param}    the ${bare_field_name} to set &#13;
+ * @since   JDK 1.8&#13;
+ */ </template><template autoinsert="false" context="fieldcomment_context" deleted="false" description="Comment for fields" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.fieldcomment" name="fieldcomment">/** &#13;
+ * ${field}:${todo} &#13;
+ * @since JDK 1.8&#13;
+ */  </template><template autoinsert="false" context="filecomment_context" deleted="false" description="Comment for created Java files" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.filecomment" name="filecomment">/** 
+ * Project Name:${project_name} 
+ * File Name:${file_name} 
+ * Package Name:${package_name} 
+ * Date:${date}${time} 
+ * 
+ */
+</template><template autoinsert="false" context="overridecomment_context" deleted="false" description="Comment for overriding methods" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.overridecomment" name="overridecomment">/** &#13;
+ * ${todo} 简单描述该方法的实现功能（可选）. &#13;
+ * ${see_to_overridden} &#13;
+ */</template><template autoinsert="false" context="gettercomment_context" deleted="false" description="Comment for getter method" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.gettercomment" name="gettercomment">/** &#13;
+ * ${bare_field_name}. &#13;
+ * &#13;
+ * @return  the ${bare_field_name} &#13;
+ * @since   JDK 1.8&#13;
+ */ </template><template autoinsert="false" context="delegatecomment_context" deleted="false" description="Comment for delegate methods" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.delegatecomment" name="delegatecomment">/**
+ * ${tags}
+ * ${see_to_target}
+ */</template><template autoinsert="false" context="methodcomment_context" deleted="false" description="Comment for non-overriding methods" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.methodcomment" name="methodcomment">/** &#13;
+ * ${todo}(这里用一句话描述这个方法的作用). &lt;br/&gt; &#13;
+ * ${todo}(这里描述这个方法适用条件 – 可选).&lt;br/&gt; &#13;
+ * ${todo}(这里描述这个方法的执行流程 – 可选).&lt;br/&gt; &#13;
+ * ${todo}(这里描述这个方法的使用方法 – 可选).&lt;br/&gt; &#13;
+ * ${todo}(这里描述这个方法的注意事项 – 可选).&lt;br/&gt; &#13;
+ * &#13;
+ * @author jun yangwenjun@chinaexpresscard.com&#13;
+ * ${tags} &#13;
+ * @since JDK 1.8&#13;
+ */  </template></templates>
