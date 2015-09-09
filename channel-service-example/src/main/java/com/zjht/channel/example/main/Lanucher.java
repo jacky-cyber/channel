@@ -36,7 +36,7 @@ public class Lanucher {
         }finally{
 //            appContext.close();
         }
-        System.out.println(">>example-service服务已启动");
+        System.out.println(">>channel-service-example服务已启动！");
         System.in.read();
     }
 }

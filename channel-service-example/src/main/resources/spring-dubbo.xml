@@ -6,119 +6,88 @@
         http://code.alibabatech.com/schema/dubbo  
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
         ">
-	<!-- 
-		应用信息，用于计算依赖关系，以下为配置属性说明：
-		owner:负责人
-		organization:组织
-		logger:日志输出方式，可选：slf4j,jcl,log4j,jdk
-		environment:应用环境，如：develop/test/product，不同环境使用不同的缺省值，以及作为只用于开发测试功能的限制条件
-		name: 当前应用名称
+	<!-- ************************************************************ -->
+	<!-- ********************公共配置信息 start************************ -->
+	<!-- ************************************************************ -->
+	<!-- 应用信息，用于计算依赖关系，以下为配置属性说明： 
+		owner:负责人 
+		organization:组织/部门/项目组名称 
+		logger:日志输出方式，可选：slf4j,jcl,log4j,jdk 
+		environment:应用环境，如：develop/test/product，不同环境使用不同的缺省值，以及作为只用于开发测试功能的限制条件 
+		name: 当前应用名称 
 	-->
-	<dubbo:application 
-		owner="jun" 
-		organization="zjht-channel"
-    	logger="slf4j"
-    	environment="develop"
-		name="hi_provider" />
+	<dubbo:application owner="jun" organization="zjht-channel"
+		logger="slf4j" environment="develop" name="hi_provider" />
 
-	<!-- 
-		使用zookeeper注册中心暴露服务地址,以下为参数说明：
-		file: 配置dubbo缓存文件的路径，有了这项配置后，当应用重启过程中，dubbo注册中心不可用时
-				则会从该缓存文件读取服务提供者列表信息，进一步保证应用可靠性。
-				该文件会缓存:
-					(1) 注册中心的列表
-					(2) 服务提供者列表
-				注：
-					(1) 文件的路径，应用可以根据需要调整，保证这个文件不会在发布过程中被清除。
-					(2) 如果有多个应用进程注意不要使用同一个文件，避免内容被覆盖。
-		protocol: 注册中心类型		
-		address : 注册中心的地址
-	 -->
-	<dubbo:registry
-		file="${user.home}/dubbo/provider/dubbo.cache"
-		protocol="zookeeper"
-		address="172.16.104.147:2181,172.16.111.106:2181,172.16.111.107:2181" 
-		/>
+	<!-- 使用注册中心暴露服务地址,以下为参数说明： 
+		file: 配置dubbo缓存文件的路径，有了这项配置后，当应用重启过程中，dubbo注册中心不可用时 
+			则会从该缓存文件读取服务提供者列表信息，进一步保证应用可靠性。 
+			该文件会缓存: 
+				(1) 注册中心的列表 
+				(2) 服务提供者列表 
+			注： (1) 文件的路径，应用可以根据需要调整，保证这个文件不会在发布过程中被清除。 
+				(2) 如果有多个应用进程注意不要使用同一个文件，避免内容被覆盖。 
+		protocol: 注册中心类型 
+		address : 注册中心的地址 
+	-->
+	<dubbo:registry file="${user.home}/dubbo/provider/dubbo.cache"
+		protocol="zookeeper" address="172.16.104.147:2181,172.16.111.106:2181,172.16.111.107:2181" />
 
-	<!--
-		协议配置,以下为配置属性说明 ：
-		name   : 协议名称，本项目统一使用dubbo协议
-		prot   : 服务的监听端口
-		threads: 服务线程池大小
-	 -->
-	<dubbo:protocol name="dubbo" port="20880"  threads="100"/>
+	<!-- 协议配置,以下为配置属性说明 ： 
+		name : 协议名称，本项目统一使用dubbo协议 
+		prot : 服务的监听端，统一应用发布多个实例时需要保证端口不一样 
+		threads: 服务线程池大小 
+	-->
+	<dubbo:protocol name="dubbo" port="20880" threads="100" />
+	<!-- ************************************************************ -->
+	<!-- **********************公共配置信息 end************************ -->
+	<!-- ************************************************************ -->
 
+
+	<!-- ************************************************************ -->
+	<!-- **********************服务配置信息 start*********************** -->
+	<!-- ************************************************************ -->
 	<!-- 具体的实现bean -->
-	<bean id="exampleService1" class="com.zjht.channel.example.service.impl.ExampleServiceImpl1" />
-	 
-	<!-- 
-		声明需要暴露的服务接口，以下为配置属性说明：
-		owner      : 负责人，该service配置的负责人，如不指定该值，则会使用dubbo:application设置的负责人。
-		interface  ：接口的完整包名+类名
-		ref        ：具体实现接口的bean的id
-		version    ：版本
-		timeout    ：消费方调用接口超时的设置，单位毫秒。method和service同时设置timeout时，优先级method>service (retries、loadbalance、actives等的覆盖策略也一样)
-		retries    ：失败重试次数，缺省是2（表示加上第一次调用，会调用3次）
-		loadbalance: 负载均衡算法（有多个Provider时，如何挑选Provider调用），缺省是随机（random）。
-					还可以有轮训(roundrobin)、最不活跃优先（leastactive，指从Consumer端并发调用最好的Provider，
-					可以减少的反应慢的Provider的调用，因为反应更容易累积并发的调用）
-		actives    ：消费者端，最大并发调用限制，即当Consumer对一个服务的并发调用到上限后，新调用会Wait直到超时。
-					在方法上配置（dubbo:method ）则并发限制针对方法，在接口上配置（dubbo:service），则并发限制针对服务。
-		delay      : 延迟注册服务时间(毫秒) ，设为-1时，表示延迟到Spring容器初始化完成时暴露服务
-		accesslog  : 设为true，将向logger中输出访问日志，也可填写访问日志文件路径，直接把访问日志输出到指定文件
-		cluster    : 集群方式，可选：failover/failfast/failsafe/failback/forking
-		register   : 该协议的服务是否注册到注册中心
-	 -->
+	<bean id="exampleService1"
+		class="com.zjht.channel.example.service.impl.ExampleServiceImpl1" />
+		
+	<!-- 声明需要暴露的服务接口，以下为配置属性说明： 
+		owner : 负责人，该service配置的负责人，如不指定该值，则会使用dubbo:application设置的负责人。 
+		interface ：接口的完整包名+类名 
+		ref ：具体实现接口的bean的id 
+		version ：服务版本 
+		timeout ：消费方调用接口超时的设置，单位毫秒。method和service同时设置timeout时，优先级method>service 
+			(retries、loadbalance、actives等的覆盖策略也一样) 
+		retries ：失败重试次数，缺省是2（表示加上第一次调用，会调用3次） 
+		loadbalance: 负载均衡算法（有多个Provider时，如何挑选Provider调用），缺省是随机（random）。 
+			还可以有轮训(roundrobin)、最不活跃优先（leastactive，指从Consumer端并发调用最好的Provider， 
+			可以减少的反应慢的Provider的调用，因为反应更容易累积并发的调用） 
+		actives ：消费者端，最大并发调用限制，即当Consumer对一个服务的并发调用到上限后，新调用会Wait直到超时。 
+			在方法上配置（dubbo:method ）则并发限制针对方法，在接口上配置（dubbo:service），则并发限制针对服务。 
+		delay : 延迟注册服务时间(毫秒) ，设为-1时，表示延迟到Spring容器初始化完成时暴露服务 
+		accesslog : 设为true，将向logger中输出访问日志，也可填写访问日志文件路径，直接把访问日志输出到指定文件 
+		cluster : 集群方式，可选：failover/failfast/failsafe/failback/forking 
+		register: 该协议的服务是否注册到注册中心 -->
 	<dubbo:service owner="jun"
-		interface="com.zjht.channel.example.service.ExampleService1"
-		ref="exampleService1" version="1.0" timeout="1000" retries="0" loadbalance="random"
-		actives="0"
-		delay="0"
-		accesslog="true"
-		cluster="failover"
-		register="true">
-		<dubbo:method name="handle" timeout="500" retries="0" loadbalance="leastactive" actives="5"/>
+		interface="com.zjht.channel.example.service.ExampleService1" ref="exampleService1"
+		version="1.0" timeout="1000" retries="0" loadbalance="random" actives="0"
+		delay="0" accesslog="true" cluster="failover" register="true">
+		<dubbo:method name="handle" timeout="500" retries="0"
+			loadbalance="leastactive" actives="5" />
 	</dubbo:service>
-	
-	
-	<!--
-		协议配置,以下为配置属性说明 ：
-		name   : 协议名称，本项目统一使用dubbo协议
-		prot   : 服务的监听端口
-		threads: 服务线程池大小
-	 -->
-	<dubbo:protocol name="dubbo" port="20880"  threads="100"/>
 
-	<!-- 具体的实现bean -->
-	<bean id="exampleService2" class="com.zjht.channel.example.service.impl.ExampleServiceImpl2" />
-	 
-	<!-- 
-		声明需要暴露的服务接口，以下为配置属性说明：
-		owner      : 负责人，该service配置的负责人，如不指定该值，则会使用dubbo:application设置的负责人。
-		interface  ：接口的完整包名+类名
-		ref        ：具体实现接口的bean的id
-		version    ：版本
-		timeout    ：消费方调用接口超时的设置，单位毫秒。method和service同时设置timeout时，优先级method>service (retries、loadbalance、actives等的覆盖策略也一样)
-		retries    ：失败重试次数，缺省是2（表示加上第一次调用，会调用3次）
-		loadbalance: 负载均衡算法（有多个Provider时，如何挑选Provider调用），缺省是随机（random）。
-					还可以有轮训(roundrobin)、最不活跃优先（leastactive，指从Consumer端并发调用最好的Provider，
-					可以减少的反应慢的Provider的调用，因为反应更容易累积并发的调用）
-		actives    ：消费者端，最大并发调用限制，即当Consumer对一个服务的并发调用到上限后，新调用会Wait直到超时。
-					在方法上配置（dubbo:method ）则并发限制针对方法，在接口上配置（dubbo:service），则并发限制针对服务。
-		delay      : 延迟注册服务时间(毫秒) ，设为-1时，表示延迟到Spring容器初始化完成时暴露服务
-		accesslog  : 设为true，将向logger中输出访问日志，也可填写访问日志文件路径，直接把访问日志输出到指定文件
-		cluster    : 集群方式，可选：failover/failfast/failsafe/failback/forking
-		register   : 该协议的服务是否注册到注册中心
-	 -->
+
+	<bean id="exampleService2"
+		class="com.zjht.channel.example.service.impl.ExampleServiceImpl2" />
+
 	<dubbo:service owner="jun"
-		interface="com.zjht.channel.example.service.ExampleService2"
-		ref="exampleService2" version="1.0" timeout="1000" retries="0" loadbalance="random"
-		actives="0"
-		delay="0"
-		accesslog="true"
-		cluster="failover"
-		register="true">
-		<dubbo:method name="handle" timeout="500" retries="0" loadbalance="leastactive" actives="5"/>
+		interface="com.zjht.channel.example.service.ExampleService2" ref="exampleService2"
+		version="1.0" timeout="1000" retries="0" loadbalance="random" actives="0"
+		delay="0" accesslog="true" cluster="failover" register="true">
+		<dubbo:method name="handle" timeout="500" retries="0"
+			loadbalance="leastactive" actives="5" />
 	</dubbo:service>
-	
+	<!-- ************************************************************ -->
+	<!-- **********************服务配置信息 start*********************** -->
+	<!-- ************************************************************ -->
 </beans>
