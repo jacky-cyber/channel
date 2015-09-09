@@ -11,14 +11,11 @@
 	<properties>
 		<junit.version>3.8.1</junit.version>
 		<spring.version>4.1.7.RELEASE</spring.version>
-
-		<!-- 文件拷贝时的编码 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-		<!-- 编译时的编码 -->
 		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -28,6 +25,16 @@
 		</dependency>
 
 		<!-- Spring start -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -54,20 +61,33 @@
 			<artifactId>spring-context-support</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
 		<!-- Spring end -->
 
+		<!-- jsp servlet start-->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<!-- jsp servlet end-->
+
+		<!-- spring using sjf4j start -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.12</version>
 		</dependency>
-
-		<!-- spring using sjf4j start -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
@@ -84,10 +104,16 @@
 			<version>1.2.17</version>
 		</dependency>
 		<!-- spring using sjf4j end -->
-		
+
+		<dependency>
+			<groupId>opensymphony</groupId>
+			<artifactId>sitemesh</artifactId>
+			<version>2.4.2</version>
+		</dependency>
+
 	</dependencies>
 
-<build>
+	<build>
 		<finalName>channel-manager</finalName>
 		<pluginManagement>
 			<plugins>
@@ -105,35 +131,6 @@
 							<bootclasspath>${java.home}/lib/rt.jar</bootclasspath>
 						</compilerArguments>
 					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.tomcat.maven</groupId>
-					<artifactId>tomcat7-maven-plugin</artifactId>
-					<version>2.2</version>
-					<executions>
-						<execution>
-							<id>tomcat-run</id>
-							<goals>
-								<goal>exec-war-only</goal>
-							</goals>
-							<phase>package</phase>
-							<configuration>
-								<path>channel-manager</path>
-								<port>9088</port>
-								<warRunDependencies>
-									<warRunDependency>
-										<dependency>
-											<groupId>com.zjht</groupId>
-											<artifactId>channel-manager</artifactId>
-											<version>0.1</version>
-											<type>war</type>
-										</dependency>
-										<contextPath>/</contextPath>
-									</warRunDependency>
-								</warRunDependencies>
-							</configuration>
-						</execution>
-					</executions>
 				</plugin>
 			</plugins>
 		</pluginManagement>

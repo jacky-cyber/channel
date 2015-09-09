@@ -26,7 +26,9 @@ public class ChannelHttpTest {
         
         String service = "test1";
         String ver = "1.0";
-        String httpUrl = "http://172.16.104.147:9060/zjhtplatform/" + service + "/" + ver + "/?";
+//        String httpUrl = "http://172.16.104.147:9060/zjhtplatform/" + service + "/" + ver + "/?";
+        String httpUrl = "http://192.168.23.1:9060/zjhtplatform/" + service + "/" + ver + "/?";
+        
         String appNo = "ZJ150706";
         String key = "lA5ej/5Ykhz32p2UoSo9x8HHhgTEV6ek";
         // 得到body值
