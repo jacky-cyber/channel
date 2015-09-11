@@ -16,7 +16,7 @@ import com.zjht.channel.common.constant.Symbol;
 import com.zjht.channel.common.helper.StringHelper;
 import com.zjht.channel.configuration.ConfigurationBuilder;
 import com.zjht.channel.configuration.bean.Configuration;
-import com.zjht.channel.service.bean.ServiceInfo;
+import com.zjht.channel.service.bean.Reference;
 
 /**
  * 
@@ -49,7 +49,7 @@ public class ZKConfigurationBuilder implements ConfigurationBuilder{
 			config.setWhitelists(buildWhitelistsConfig());//白名单配置信息
 			config.setSecurity(buildSecurityConfig());//终端-密钥配置信息
 			config.setPermission(buildPermissionConfig());//终端-权限配置信息
-			config.setServices(buildServiceConfig());//服务配置信息
+//			config.setServices(buildServiceConfig());//服务配置信息
 			logger.debug("配置信息：{}",config);
 		}catch(Exception e){
 			logger.error("生成配置失败",e);
@@ -70,10 +70,10 @@ public class ZKConfigurationBuilder implements ConfigurationBuilder{
 	 * @throws Exception 
 	 * @since JDK 1.8
 	 */  
-	private List<ServiceInfo> buildServiceConfig() throws Exception {
+	private List<Reference> buildServiceConfig() throws Exception {
 		List<String> svcNames      = null;
 		List<String> svcVersions   = null;
-		List<ServiceInfo> services = Lists.newArrayList();
+		List<Reference> services = Lists.newArrayList();
 		
 		String basePath = "/channel/service";
 		
@@ -90,12 +90,12 @@ public class ZKConfigurationBuilder implements ConfigurationBuilder{
 		        logger.debug("classNamePath=[]",classNamePath);
 		        logger.debug("statusPath=[]",statusPath);
 		        
-		        ServiceInfo service = new ServiceInfo();
-		        service.setServiceName(svcName);
-		        service.setServiceVersion(svcVersion);
-	            service.setPackageName(StringHelper.newString(curator.getData(packageNamePath), "utf-8"));
-	            service.setClassName(StringHelper.newString(curator.getData(classNamePath), "utf-8"));
-	            service.setStatus(StringHelper.newString(curator.getData(statusPath), "utf-8"));
+		        Reference service = new Reference();
+//		        service.setServiceName(svcName);
+//		        service.setServiceVersion(svcVersion);
+//	            service.setPackageName(StringHelper.newString(curator.getData(packageNamePath), "utf-8"));
+//	            service.setClassName(StringHelper.newString(curator.getData(classNamePath), "utf-8"));
+//	            service.setStatus(StringHelper.newString(curator.getData(statusPath), "utf-8"));
 	            services.add(service);
 	            logger.debug("构建服务信息{}",service);
             }
@@ -113,9 +113,9 @@ public class ZKConfigurationBuilder implements ConfigurationBuilder{
 	 * @throws Exception 
 	 * @since JDK 1.7
 	 */
-	private Map<String, List<ServiceInfo>> buildPermissionConfig() throws Exception {
-		Map<String,List<ServiceInfo>> permission = Maps.newHashMap();
-		List<ServiceInfo> services = Lists.newArrayList();
+	private Map<String, List<Reference>> buildPermissionConfig() throws Exception {
+		Map<String,List<Reference>> permission = Maps.newHashMap();
+		List<Reference> services = Lists.newArrayList();
 		List<String> appnos   = null;
 		List<String> svrNames = null;
 		List<String> svrVersions = null;
@@ -132,7 +132,7 @@ public class ZKConfigurationBuilder implements ConfigurationBuilder{
 		        
 		        for (String svrVersion : svrVersions) {
 		            logger.debug("\t 服务名称[{}],服务版本[{}]",svrName,svrVersion);
-                    services.add(new ServiceInfo(svrName,svrVersion));
+                    services.add(new Reference(svrName,svrVersion));
                 }
 		    }
 			permission.put(appno, services);

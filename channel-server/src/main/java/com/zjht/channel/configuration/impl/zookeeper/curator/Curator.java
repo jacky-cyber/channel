@@ -167,6 +167,7 @@ public class Curator implements ZKClient {
     private void init2() throws UnsupportedEncodingException {
         create("/channel/inspection/whitelists/127.0.0.1");
         create("/channel/inspection/whitelists/172.16.104.147");
+        create("/channel/inspection/whitelists/192.168.23.3");
 
         create("/channel/inspection/security/ZJ208160/key","eUaPRnpD0+qzPulr9LrNqNX99+M+iSDq".getBytes("UTF-8"));
         create("/channel/inspection/security/ZJ150706/key","lA5ej/5Ykhz32p2UoSo9x8HHhgTEV6ek".getBytes("UTF-8"));

@@ -11,7 +11,7 @@ package com.zjht.channel.service;
 
 import java.util.Map;
 
-import com.zjht.channel.service.bean.ServiceInfo;
+import com.zjht.channel.service.bean.Reference;
  
 /** 
  * ClassName: ServiceManager <br/> 
@@ -32,7 +32,7 @@ public interface ServiceManager {
      * @param service 
      * @since JDK 1.8
      */
-    void load(ServiceInfo service);
+    void load(Reference service);
     
     
     
@@ -44,7 +44,7 @@ public interface ServiceManager {
      * @param service 
      * @since JDK 1.8
      */
-    void unload(ServiceInfo service);
+    void unload(Reference service);
     
     
     /**

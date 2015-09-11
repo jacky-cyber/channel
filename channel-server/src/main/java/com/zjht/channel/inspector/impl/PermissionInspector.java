@@ -21,7 +21,7 @@ import com.zjht.channel.configuration.ConfigurationBuilder;
 import com.zjht.channel.configuration.bean.Configuration;
 import com.zjht.channel.exception.InspectionException;
 import com.zjht.channel.inspector.Inspector;
-import com.zjht.channel.service.bean.ServiceInfo;
+import com.zjht.channel.service.bean.Reference;
 
 /**
  * 
@@ -85,12 +85,12 @@ public class PermissionInspector implements Inspector{
      */
     private boolean checkPermission(String appno, String svrName,String svrVersion) {
         Configuration config   = null;
-        Map<String, List<ServiceInfo>> permissions = null;
+        Map<String, List<Reference>> permissions = null;
         
         config = configBuilder.configuration();
         permissions = config.getPermission();
         
-        if(!(permissions.containsKey(appno)&&permissions.get(appno).contains(new ServiceInfo(svrName,svrVersion)))){
+        if(!(permissions.containsKey(appno)&&permissions.get(appno).contains(new Reference(svrName,svrVersion)))){
             threadLocal.set(new InspectionException(RespCode._00104.code(),
                     StringHelper.replace(RespCode._00104.message(),appno,svrName,svrVersion)));
             return false;

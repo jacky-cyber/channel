@@ -56,7 +56,7 @@ public class ServerLauncher {
          * t.printStackTrace(); } }; if (options.isClustered()) {
          * Vertx.clusteredVertx(options, res -> { if (res.succeeded()) { Vertx
          * vertx = res.result(); runner.accept(vertx); } else {
-         * res.cause().printStackTrace(); } }); } else { Vertx vertx =
+         * res.cause().printStackTrace(); } }i); } else { Vertx vertx =
          * Vertx.vertx(options); runner.accept(vertx); }
          */
 
