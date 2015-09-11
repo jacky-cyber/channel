@@ -30,7 +30,7 @@ import com.zjht.channel.configuration.ConfigurationBuilder;
 import com.zjht.channel.configuration.bean.Configuration;
 import com.zjht.channel.exception.InspectionException;
 import com.zjht.channel.inspector.Inspector;
-import com.zjht.channel.service.bean.ServiceInfo;
+import com.zjht.channel.service.bean.Reference;
  
 /** 
  * ClassName: RequestPathInspector <br/> 
@@ -123,18 +123,15 @@ public class RequestPathInspector implements Inspector {
      * @since JDK 1.8
      */  
     private boolean existService(String svrName, String svrVersion) {
-        Configuration config   = null;
-        List<ServiceInfo> services =  null;
-        config = configBuilder.configuration();
-        services = config.getServices();
-        
-        logger.debug("services:{}",services);
-        for (ServiceInfo service : services) {
-            
-            if(ObjectHelper.equal(new ServiceInfo(svrName,svrVersion), service)){
+        List<Reference> services =  configBuilder.configuration().getDubboConfig().getReferences();
+		logger.debug("services:{}",services);
+		
+        for (Reference service : services) {
+            if(ObjectHelper.equal(new Reference(svrName,svrVersion), service)){
                 return true;
             }
         }
+        
         return false;
     }
 

@@ -41,12 +41,12 @@ public class DynamicClassLoader {
      * @return 
      * @since JDK 1.8
      */
-    public static Class<?> loadClass(String packagename,String classname){
+    public static Class<?> loadClass(String fullyQualifiedName){
         ClassPool cPool = null;
         Class<?> clazz  = null;
         try{
             cPool = new ClassPool(true);//使用系统的classpath
-            CtClass cc = cPool.makeInterface(classname);
+            CtClass cc = cPool.makeInterface(fullyQualifiedName);
             
             //设置实现接口com.zjht.channel.service.Service
             CtClass iClass = cPool.get(Service.class.getName());
@@ -56,7 +56,7 @@ public class DynamicClassLoader {
 //            cc.addMethod(method);
             
             //设置类名
-            cc.setName(packagename.concat(".").concat(classname));
+            cc.setName(fullyQualifiedName);
             
             //将class文件写入到项目的classpath路径
             cc.writeFile(FileHelper.getClasspath());

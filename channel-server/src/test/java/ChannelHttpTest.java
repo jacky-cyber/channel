@@ -41,7 +41,7 @@ public class ChannelHttpTest {
         System.out.println(">>开始请求:");
         HttpResponse response = HttpRequest.get(httpUrl).query("sign", sign)
                 .query("appNo", appNo).query("msg", msg).send();
-        response.close();//严重: java.io.IOException: 远程主机强迫关闭了一个现有的连接。
+        response.close();//此处要close();严重: java.io.IOException: 远程主机强迫关闭了一个现有的连接。
         System.out.println(">>"+service+ " Repsone:" + response.bodyText());
     }
     

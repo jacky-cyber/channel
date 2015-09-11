@@ -10,7 +10,9 @@
 package com.zjht.channel.common.helper;  
 
 import java.text.DateFormat;
+import java.util.List;
 
+import com.google.common.collect.Lists;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -50,7 +52,11 @@ public final class JsonHelper {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(toJson(new Response()));;
+		List<String> list = Lists.newArrayList();
+		list.add("test1");
+		list.add("test2");
+		list.add("test3");
+		System.out.println(toJson(list));;
 	}
 
 
