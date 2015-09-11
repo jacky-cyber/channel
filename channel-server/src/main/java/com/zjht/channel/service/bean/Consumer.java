@@ -21,6 +21,8 @@ public class Consumer {
 	
 	private String owner;//负责人
 	
+	private String group;//组织名称(部门)
+	
 	/**
 	 * 远程服务调用超时时间(毫秒) 
 	 *  默认值1000
@@ -109,6 +111,27 @@ public class Consumer {
 	 */
 	public void setOwner(String owner) {
 		this.owner = owner;
+	}
+	
+	
+	/** 
+	 * group. 
+	 * 
+	 * @return  the group 
+	 * @since   JDK 1.8
+	 */
+	public String getGroup() {
+		return group;
+	}
+
+	/** 
+	 * group. 
+	 * 
+	 * @param   group    the group to set 
+	 * @since   JDK 1.8
+	 */
+	public void setGroup(String group) {
+		this.group = group;
 	}
 
 	/** 
@@ -357,10 +380,9 @@ public class Consumer {
 	 */
 	@Override
 	public String toString() {
-		return "Consumer [owner=" + owner + ", timeout=" + timeout + ", retries=" + retries + ", loadbalance="
-				+ loadbalance + ", async=" + async + ", generic=" + generic
-				+ ", check=" + check + ", proxy=" + proxy + ", actives=" + actives + ", cluseter=" + cluseter
-				+ ", filter=" + filter + ", listener=" + listener + ", layer=" + layer + "]";
+		return "Consumer [owner=" + owner + ", group=" + group + ", timeout=" + timeout + ", retries=" + retries
+				+ ", loadbalance=" + loadbalance + ", async=" + async + ", generic=" + generic + ", check=" + check
+				+ ", proxy=" + proxy + ", actives=" + actives + ", cluseter=" + cluseter + ", filter=" + filter
+				+ ", listener=" + listener + ", layer=" + layer + "]";
 	}
-	
 }

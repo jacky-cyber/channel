@@ -21,12 +21,10 @@ import org.springframework.stereotype.Service;
 
 import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.ConsumerConfig;
-import com.alibaba.dubbo.config.MethodConfig;
 import com.alibaba.dubbo.config.ReferenceConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
 import com.alibaba.dubbo.rpc.service.EchoService;
 import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.zjht.channel.common.constant.RespCode;
 import com.zjht.channel.common.helper.ObjectHelper;
@@ -36,7 +34,6 @@ import com.zjht.channel.exception.ServiceException;
 import com.zjht.channel.service.ServiceManager;
 import com.zjht.channel.service.bean.Application;
 import com.zjht.channel.service.bean.Consumer;
-import com.zjht.channel.service.bean.Method;
 import com.zjht.channel.service.bean.Reference;
 import com.zjht.channel.service.bean.Registry;
 import com.zjht.channel.service.helper.DynamicClassLoader;
@@ -84,8 +81,9 @@ public class DubboServiceManager implements ServiceManager {
 		Preconditions.checkArgument(!Objects.isNull(consumer), "未初始化Dubbo Consumer！");
 		
 		consumerConfig = new ConsumerConfig();
-		consumerConfig.setOwner(consumer.getOwner());
 		consumerConfig.setApplication(applicationConfig);
+		consumerConfig.setOwner(consumer.getOwner());
+		consumerConfig.setGroup(consumer.getGroup());
 		consumerConfig.setRegistry(registryConfig);
 		consumerConfig.setActives(consumer.getActives());
 		consumerConfig.setAsync(consumer.isAsync());
@@ -179,60 +177,10 @@ public class DubboServiceManager implements ServiceManager {
         refConfig.setGroup(reference.getGroup());
         refConfig.setOwner(reference.getOwner());
         refConfig.setId(reference.getId());
-        refConfig.setActives(reference.getActives());
-        refConfig.setClient(reference.getClient());
-        refConfig.setCluster(reference.getCluster());
-        refConfig.setConnections(reference.getConnections());
         refConfig.setInterface(DynamicClassLoader.loadClass(reference.getFullyQualifiedName()));
-        refConfig.setLoadbalance(reference.getLoadbalance());
-        refConfig.setProxy(reference.getProxy());
-        refConfig.setRetries(reference.getRetries());
-        refConfig.setTimeout(reference.getTimeout());
-        refConfig.setVersion(reference.getVersion());
-        refConfig.setInit(reference.isInit());
-        refConfig.setAsync(reference.isAsync());
-        refConfig.setCheck(reference.isCheck());
-        refConfig.setGeneric(reference.isGeneric());
-        refConfig.setFilter(reference.getFilter());
-        refConfig.setListener(reference.getListener());
-        refConfig.setLayer(reference.getLayer());
-        refConfig.setMethods(initMethodConfig(reference.getMethods()));
+        refConfig.setInit(true);
         referenceMap.put(ServiceHelper.getIdentify(reference.getName(), reference.getVersion()), refConfig);
     }
-
-    /** 
-	 * api方式初始化<dubbo:method/>. <br/> 
-	 * 
-	 * @author jun yangwenjun@chinaexpresscard.com
-     * @param list 
-	 * @param  
-	 * @since JDK 1.8
-	 */  
-	private List<MethodConfig> initMethodConfig(List<Method> methods) {
-		List<MethodConfig> methodConfigs =  Lists.newArrayList();
-		
-		if(Objects.isNull(methods)||methods.size()<=0){
-			logger.info("未发现需要注册的Dubbo Method");
-			return methodConfigs;
-		}
-		
-		logger.info("开始注册DUbbo Method,总数：{}",methods.size());
-		methods.forEach(m->{
-			MethodConfig methodConfig = new MethodConfig();
-			methodConfig.setActives(m.getActives());
-			methodConfig.setAsync(m.isAsync());
-			methodConfig.setExecutes(m.getExecutes());
-			methodConfig.setLoadbalance(m.getLoadbalance());
-			methodConfig.setName(m.getName());
-			methodConfig.setRetries(m.getRetries());
-			methodConfig.setTimeout(m.getTimeout());
-			methodConfig.setReturn(m.isNeedReturn());
-			methodConfig.setSent(m.isSent());
-			methodConfig.setSticky(m.isSticky());
-			methodConfigs.add(methodConfig);
-		});
-		return methodConfigs;
-	}
 
 	/**
      * @see com.zjht.channel.service.ServiceManager#unload(com.zjht.channel.service.bean.Reference)
