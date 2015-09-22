@@ -3,5 +3,10 @@
 	<decorator name="basic-theme" page="basic-theme.jsp">
 		<pattern>/*</pattern>
 	</decorator>
-
+	<excludes>
+		<pattern>/druid/*</pattern>
+		<pattern>/login</pattern>
+		<pattern>/logout</pattern>
+		<pattern>/resources/*</pattern>
+	</excludes>
 </decorators>

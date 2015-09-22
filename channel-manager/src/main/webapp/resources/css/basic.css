@@ -1,0 +1,36 @@
+.content{
+	margin-top:30px;
+	margin-bottom:35px;
+/* 	margin-right: auto; 
+	margin-left: auto; */
+}
+
+
+ footer {
+ 	position: fixed;
+	width: 100%;
+	height: 35px;
+	margin: 0px;
+	padding: 0px;
+	bottom: 0px;
+	line-height : 35px;
+	text-align: center;
+	line-height: 35px;
+	z-index:999;
+} 
+
+/**
+解决操作按钮组与导航栏之间距离过大的问题
+*/
+.page-header{
+	margin-top:0px;
+}
+
+/**
+解决DataTable的每页显示下拉框在不同主题下的高度问题
+*/
+.dropdown-toggle{
+	padding-top:3px;
+	padding-bottom:3px;
+	/* height:35px; */
+}
