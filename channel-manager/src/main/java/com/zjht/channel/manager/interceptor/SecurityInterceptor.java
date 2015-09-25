@@ -1,11 +1,3 @@
-/** 
- * Project Name : channel-manager 
- * File Name : SecurityInterceptor.java 
- * Package Name : interceptor 
- * Date : Sep 14, 20153:56:25 PM 
- * 
- */
-
 package com.zjht.channel.manager.interceptor;
 
 import java.util.List;

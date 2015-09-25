@@ -255,8 +255,8 @@
 			<id>dev</id>
 			<properties>
 				<ENV.APPLICATION.ENVIRONMENT>develop</ENV.APPLICATION.ENVIRONMENT>
-				<ENV.ZK.ADDRESS>127.0.0.1:2181</ENV.ZK.ADDRESS>
-				<ENV.DB.URL>jdbc:mysql://localhost:3306/channel</ENV.DB.URL>
+				<ENV.ZK.ADDRESS>127.0.0.1:2181,172.16.111.106:2181,172.16.111.107:2181</ENV.ZK.ADDRESS>
+				<ENV.DB.URL>jdbc:mysql://127.0.0.1:3306/channel</ENV.DB.URL>
 				<ENV.DB.DRIVER>com.mysql.jdbc.Driver</ENV.DB.DRIVER>
 				<ENV.DB.USERNAME>channel</ENV.DB.USERNAME>
 				<ENV.DB.PASSWORD>com.zjht.channel</ENV.DB.PASSWORD>
@@ -270,6 +270,10 @@
 			<properties>
 				<ENV.APPLICATION.ENVIRONMENT>test</ENV.APPLICATION.ENVIRONMENT>
 				<ENV.ZK.ADDRESS>172.16.104.147:2181,172.16.111.106:2181,172.16.111.107:2181</ENV.ZK.ADDRESS>
+				<ENV.DB.URL>jdbc:mysql://192.168.23.3:3306/channel</ENV.DB.URL>
+				<ENV.DB.DRIVER>com.mysql.jdbc.Driver</ENV.DB.DRIVER>
+				<ENV.DB.USERNAME>channel</ENV.DB.USERNAME>
+				<ENV.DB.PASSWORD>com.zjht.channel</ENV.DB.PASSWORD>
 			</properties>
 		</profile>
 		<profile>
@@ -277,6 +281,10 @@
 			<properties>
 				<ENV.APPLICATION.ENVIRONMENT>product</ENV.APPLICATION.ENVIRONMENT>
 				<ENV.ZK.ADDRESS>172.16.104.147:2181,172.16.111.106:2181,172.16.111.107:2181</ENV.ZK.ADDRESS>
+				<ENV.DB.URL>jdbc:mysql://localhost:3306/channel</ENV.DB.URL>
+				<ENV.DB.DRIVER>com.mysql.jdbc.Driver</ENV.DB.DRIVER>
+				<ENV.DB.USERNAME>channel</ENV.DB.USERNAME>
+				<ENV.DB.PASSWORD>com.zjht.channel</ENV.DB.PASSWORD>
 			</properties>
 		</profile>
 	</profiles>

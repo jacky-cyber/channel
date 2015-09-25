@@ -1,8 +1,3 @@
-/**
- * Project Name:channel-manager File Name:LoginController.java Package
- * Name:com.zjht.channel.controller Date:Sep 9, 20154:09:59 PM
- * 
- */
 
 package com.zjht.channel.manager.controller;
 
@@ -79,7 +74,7 @@ public class LoginController {
         LOGGER.debug("user logout!");
         session.removeAttribute(SessionConstant.USER.getName());
         session.invalidate();
-        return "login";
+        return "redirect:/login";
     }
 
     /**

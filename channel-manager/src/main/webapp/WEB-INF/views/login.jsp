@@ -4,6 +4,10 @@
 <%
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ request.getContextPath() + "/";
+	String theme = (String)session.getAttribute("session_theme");
+	if(theme==null||"".equals(theme.trim())){
+	    theme = "paper";
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -20,7 +24,7 @@
 <LINK href="favicon.ico" type="image/x-icon" rel="icon">
 <LINK href="favicon.ico" type="image/x-icon" rel="shortcut icon">
 
-<link href="resources/css/themes/${session_theme}/bootstrap.css" rel="stylesheet" />
+<link href="resources/css/themes/<%=theme %>/bootstrap.css" rel="stylesheet" />
 <link href="resources/css/custom.min.css" rel="stylesheet">
 <!-- Loading custom css -->
 <link href="resources/css/login.css" rel="stylesheet">
@@ -41,7 +45,7 @@
 					<!-- <h3 class="panel-title"></h3> -->
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal login" method="post">
+					<form class="form-horizontal login" method="post" action="login">
 						<fieldset>
 							<legend>欢迎您，请登录</legend>
 							<div class="form-group">

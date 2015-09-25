@@ -194,6 +194,9 @@ public class ConfigurationServiceImpl implements ConfigurationService {
         //2. 过滤已经在合并集合中存在的节点，即1步中添加的。
         //3. 遍历处理：只处理两边都存在的节点
         dbChildrens.stream()
+            .filter(dbC->{
+                return !Objects.isNull(dbC);
+            })
             .map(dbC -> {
                 //db在zk不存在的节点状态置为ADDED
                 if (!zkChildrens.contains(dbC)) {
@@ -215,6 +218,9 @@ public class ConfigurationServiceImpl implements ConfigurationService {
         //2. 过滤已经在合并集合中存在的节点，即1步中添加的。
         //3. 遍历处理：只处理两边都存在的节点
         zkChildrens.stream()
+            .filter(zkC->{
+                return !Objects.isNull(zkC);
+            })
             .map(zkC -> {
                 if (!dbChildrens.contains(zkC)) {
                     mergeChildrens.add(loopSetStatus(zkC,DELETED));

@@ -3,6 +3,10 @@
 <%
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 		+ request.getContextPath() + "/";
+	String theme = (String)session.getAttribute("session_theme");
+	if(theme==null||"".equals(theme.trim())){
+	    theme = "paper";
+	}
 %>
 <!DOCTYPE html>
 <html lang="zh_CN">
@@ -17,7 +21,7 @@
 <LINK href="favicon.ico" type="image/x-icon" rel="icon">
 <LINK href="favicon.ico" type="image/x-icon" rel="shortcut icon">
 
-<link href="resources/css/themes/${session_theme}/bootstrap.css" rel="stylesheet" />
+<link href="resources/css/themes/<%=theme%>/bootstrap.css" rel="stylesheet" />
 <link href="resources/css/bootstrap-select.css" rel="stylesheet" />
 <link href="resources/css/sweet-alert.css" rel="stylesheet">
 <link href="resources/css/dataTables.bootstrap.css" rel="stylesheet">
@@ -84,7 +88,7 @@ $(document).ready(function(){
 							<li><a href="logout">登出</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="#" id="themes">主题（${session_theme}）<span
+						data-toggle="dropdown" href="#" id="themes">主题（<%=theme%>）<span
 							class="caret"></span></a>
 						<ul class="dropdown-menu" aria-labelledby="themes">
 							<li><a href="theme/cerulean">cerulean</a></li>

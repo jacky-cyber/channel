@@ -1,4 +1,4 @@
-## 创建白名单表 
+## 创建系统用户表
 DROP TABLE IF EXISTS `channel_user`;
 CREATE TABLE `channel_user` (
     `user_id` int(11) NOT NULL AUTO_INCREMENT,
