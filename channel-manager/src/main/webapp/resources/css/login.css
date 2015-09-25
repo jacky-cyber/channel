@@ -1,14 +1,21 @@
-
 .login {
 	width: 420px;
 }
 
-.error_style{
-	display:block;
-	margin:0px auto;
-	width:470px;
+.error_style {
+	display: block;
+	margin: 0px auto;
+	width: 470px;
 }
 
-.login-container{
-	width:470px;
+.login-container {
+	width: 470px;
+}
+/* 
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0px 50px white inset !important;
+	-webkit-text-fill-color: #666;
+} */
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0 37px white inset !important;
 }

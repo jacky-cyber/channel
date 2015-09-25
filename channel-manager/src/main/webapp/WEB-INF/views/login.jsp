@@ -10,15 +10,14 @@
 	}
 %>
 <!DOCTYPE html>
-<html>
+<html lang="zh_CN">
 <head>
 <base href="<%=basePath%>">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="">
 <meta name="author" content="">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>渠道管理系统-登录</title>
 
 <LINK href="favicon.ico" type="image/x-icon" rel="icon">
@@ -45,21 +44,19 @@
 					<!-- <h3 class="panel-title"></h3> -->
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal login" method="post" action="login">
+					<form class="form-horizontal login" method="post" action="login"  >
 						<fieldset>
 							<legend>欢迎您，请登录</legend>
 							<div class="form-group">
 								<label for="username" class="col-lg-2 control-label">用户</label>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" id="username"
-										name="username" placeholder="Username" value="channel">
+									<input type="text" class="form-control" name="username" placeholder="Username" value="" autocomplete="off" autocorrect="off" >
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="password" class="col-lg-2 control-label">密码</label>
 								<div class="col-lg-10">
-									<input type="password" class="form-control" id="password"
-										name="password" placeholder="Password"  value="channel2">
+									<input type="password" class="form-control" name="password"  placeholder="Password"  value="" autocomplete="off"  >
 									<div class="checkbox">
 										<label> <input type="checkbox"> 记住我
 										</label>
