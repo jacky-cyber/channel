@@ -33,8 +33,9 @@ public class Configuration {
 	 * @param   whitelists    the whitelists to set 
 	 * @since   JDK 1.8
 	 */
-	public void setWhitelists(List<String> whitelists) {
+	public Configuration setWhitelists(List<String> whitelists) {
 		this.whitelists = whitelists;
+		return this;
 	}
 
 	/** 
@@ -53,8 +54,9 @@ public class Configuration {
 	 * @param   security    the security to set 
 	 * @since   JDK 1.8
 	 */
-	public void setSecurity(Map<String, String> security) {
+	public Configuration setSecurity(Map<String, String> security) {
 		this.security = security;
+		return this;
 	}
 
 	/** 
@@ -73,8 +75,9 @@ public class Configuration {
 	 * @param   permission    the permission to set 
 	 * @since   JDK 1.8
 	 */
-	public void setPermission(Map<String, List<Reference>> permission) {
+	public Configuration setPermission(Map<String, List<Reference>> permission) {
 		this.permission = permission;
+		return this;
 	}
 
 	/** 
@@ -93,7 +96,19 @@ public class Configuration {
 	 * @param   dubboConfig    the dubboConfig to set 
 	 * @since   JDK 1.8
 	 */
-	public void setDubboConfig(DubboConfig dubboConfig) {
+	public Configuration setDubboConfig(DubboConfig dubboConfig) {
 		this.dubboConfig = dubboConfig;
+		return this;
 	}
+
+    /** 
+     * @see java.lang.Object#toString() 
+     */
+    @Override
+    public String toString() {
+        return "Configuration [whitelists=" + whitelists + ", security=" + security
+                + ", permission=" + permission + ", dubboConfig=" + dubboConfig + "]";
+    }
+	
+	
 }

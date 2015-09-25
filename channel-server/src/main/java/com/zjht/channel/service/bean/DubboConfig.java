@@ -39,8 +39,9 @@ public class DubboConfig {
 	 * @param   application    the application to set 
 	 * @since   JDK 1.8
 	 */
-	public void setApplication(Application application) {
+	public DubboConfig setApplication(Application application) {
 		this.application = application;
+		return this;
 	}
 	/** 
 	 * registry. 
@@ -57,8 +58,9 @@ public class DubboConfig {
 	 * @param   registry    the registry to set 
 	 * @since   JDK 1.8
 	 */
-	public void setRegistry(Registry registry) {
+	public DubboConfig setRegistry(Registry registry) {
 		this.registry = registry;
+		return this;
 	}
 	/** 
 	 * consumer. 
@@ -75,8 +77,9 @@ public class DubboConfig {
 	 * @param   consumer    the consumer to set 
 	 * @since   JDK 1.8
 	 */
-	public void setConsumer(Consumer consumer) {
+	public DubboConfig setConsumer(Consumer consumer) {
 		this.consumer = consumer;
+		return this;
 	}
 	/** 
 	 * references. 
@@ -93,8 +96,9 @@ public class DubboConfig {
 	 * @param   references    the references to set 
 	 * @since   JDK 1.8
 	 */
-	public void setReferences(List<Reference> references) {
+	public DubboConfig setReferences(List<Reference> references) {
 		this.references = references;
+		return this;
 	}
 	/** 
 	 * @see java.lang.Object#toString() 

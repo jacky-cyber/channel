@@ -8,9 +8,6 @@
 
 package com.zjht.channel.server.hanlder;
 
-import io.vertx.core.http.HttpServerRequest;
-import io.vertx.core.http.HttpServerResponse;
-
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -23,14 +20,17 @@ import com.google.common.collect.Maps;
 import com.zjht.channel.common.bean.Request;
 import com.zjht.channel.common.bean.Response;
 import com.zjht.channel.common.constant.RespCode;
-import com.zjht.channel.common.helper.JsonHelper;
 import com.zjht.channel.exception.InspectionException;
 import com.zjht.channel.exception.ServiceException;
 import com.zjht.channel.exception.bean.ErrorMessage;
+import com.zjht.channel.helper.common.JsonHelper;
 import com.zjht.channel.inspector.InspectionEngine;
 import com.zjht.channel.server.HttpRequestHandler;
 import com.zjht.channel.server.helper.RRHelper;
 import com.zjht.channel.service.ServiceManager;
+
+import io.vertx.core.http.HttpServerRequest;
+import io.vertx.core.http.HttpServerResponse;
 
 /**
  * ClassName: ChannelHttpRequestHanlder <br/>
@@ -78,11 +78,11 @@ public class ChannelHttpRequestHanlder implements HttpRequestHandler {
             content = serviceManager.invoke(request.getSvrName(),request.getSvrVersion(), RRHelper.requestParam(request));
             logger.info("完成调用服务");
         } catch (InspectionException e) {
-            logger.info("规则校验不通过，响应码[{}],响应信息[{}]",e.getCode(),e.getMessage());
-            content = new ErrorMessage(e.getCode(), e.getMessage());
+            logger.info("规则校验不通过，响应码[{}],响应信息[{}]",e.code(),e.message());
+            content = new ErrorMessage(e.code(), e.message());
         } catch (ServiceException e) {
-            logger.info("调用服务失败，响应码[{}],响应信息[{}]",e.getCode(),e.getMessage());
-            content = new ErrorMessage(e.getCode(), e.getMessage());
+            logger.info("调用服务失败，响应码[{}],响应信息[{}]",e.code(),e.message());
+            content = new ErrorMessage(e.code(), e.message());
         } catch (Exception e) {
             logger.error("处理失败", e);
             content = new ErrorMessage(RespCode._99999.code(), RespCode._99999.message());

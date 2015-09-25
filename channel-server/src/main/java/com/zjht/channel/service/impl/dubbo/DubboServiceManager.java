@@ -27,10 +27,10 @@ import com.alibaba.dubbo.rpc.service.EchoService;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
 import com.zjht.channel.common.constant.RespCode;
-import com.zjht.channel.common.helper.ObjectHelper;
-import com.zjht.channel.common.helper.StringHelper;
 import com.zjht.channel.configuration.ConfigurationBuilder;
 import com.zjht.channel.exception.ServiceException;
+import com.zjht.channel.helper.common.ObjectHelper;
+import com.zjht.channel.helper.common.StringHelper;
 import com.zjht.channel.service.ServiceManager;
 import com.zjht.channel.service.bean.Application;
 import com.zjht.channel.service.bean.Consumer;
@@ -79,20 +79,16 @@ public class DubboServiceManager implements ServiceManager {
 	private void initConsumer() {
 		Consumer consumer  = configFactory.configuration().getDubboConfig().getConsumer();
 		Preconditions.checkArgument(!Objects.isNull(consumer), "未初始化Dubbo Consumer！");
-		
 		consumerConfig = new ConsumerConfig();
 		consumerConfig.setApplication(applicationConfig);
+		consumerConfig.setRegistry(registryConfig);
 		consumerConfig.setOwner(consumer.getOwner());
 		consumerConfig.setGroup(consumer.getGroup());
-		consumerConfig.setRegistry(registryConfig);
 		consumerConfig.setActives(consumer.getActives());
 		consumerConfig.setAsync(consumer.isAsync());
 		consumerConfig.setCheck(consumer.isCheck());
 		consumerConfig.setCluster(consumer.getCluseter());
-		consumerConfig.setFilter(consumer.getFilter());
 		consumerConfig.setGeneric(consumer.getGeneric());
-		consumerConfig.setLayer(consumer.getLayer());
-		consumerConfig.setListener(consumer.getListener());
 		consumerConfig.setLoadbalance(consumer.getLoadbalance());
 		consumerConfig.setProxy(consumer.getProxy());
 		consumerConfig.setRetries(consumer.getRetries());
@@ -107,9 +103,9 @@ public class DubboServiceManager implements ServiceManager {
      */  
     private void initReference() {
         List<Reference> referenceList = configFactory.configuration().getDubboConfig().getReferences();
-        Preconditions.checkArgument(!Objects.isNull(referenceMap), "未初始化Dubbo Reference！");
+        Preconditions.checkArgument(!Objects.isNull(referenceList), "未初始化Dubbo Reference！");
 
-        logger.debug("配置中总服务数：{}",referenceMap.size());
+        logger.debug("配置中总服务数：{}",referenceList.size());
         logger.debug("开始加载服务");
         referenceMap = Maps.newHashMap();
         for (Reference reference : referenceList) {
@@ -128,20 +124,18 @@ public class DubboServiceManager implements ServiceManager {
     private void initRegistry() {
     	Registry registry = configFactory.configuration().getDubboConfig().getRegistry();
     	Preconditions.checkArgument(!Objects.isNull(registry), "未初始化Dubbo Registry！");
-    	
         registryConfig = new RegistryConfig();
         registryConfig.setId(registry.getId());
+        registryConfig.setGroup(registry.getGroup());
         registryConfig.setAddress(registry.getAddress());
         registryConfig.setProtocol(registry.getProtocol());
         registryConfig.setCheck(registry.isCheck());
         registryConfig.setUsername(registry.getUsername());
         registryConfig.setPassword(registry.getPassword());
-        registryConfig.setDynamic(registry.isDynamic());
         registryConfig.setFile(registry.getFile());
         registryConfig.setSession(registry.getSession());
         registryConfig.setTimeout(registry.getTimeout());
         registryConfig.setSubscribe(registry.isSubscribe());
-        registryConfig.setRegister(registry.isRegister());
     }
 
     /** 
@@ -159,7 +153,6 @@ public class DubboServiceManager implements ServiceManager {
         applicationConfig.setVersion(application.getVersion());//当前应用的版本
         applicationConfig.setOwner(application.getOwner());//应用负责人
         applicationConfig.setOrganization(application.getOrganization());//组织名称(部门)
-        applicationConfig.setArchitecture(application.getArchitecture());//服务分层对应的架构
         applicationConfig.setEnvironment(application.getEnvironment());//应用环境，如：develop/test/product，不同环境使用不同的缺省值，以及作为只用于开发测试功能的限制条件
         applicationConfig.setCompiler(application.getCompiler());//Java字节码编译器，用于动态类的生成，可选：jdk或javassist
         applicationConfig.setLogger(application.getLogger());//日志输出方式，可选：slf4j,jcl,log4j,jdk
@@ -171,8 +164,8 @@ public class DubboServiceManager implements ServiceManager {
     @Override
     public void load(Reference reference) {
         ReferenceConfig<com.zjht.channel.service.Service> refConfig = new ReferenceConfig<com.zjht.channel.service.Service>();
-        refConfig.setApplication(applicationConfig);
-        refConfig.setRegistry(registryConfig);
+//        refConfig.setApplication(applicationConfig);
+//        refConfig.setRegistry(registryConfig);
         refConfig.setConsumer(consumerConfig);
         refConfig.setGroup(reference.getGroup());
         refConfig.setOwner(reference.getOwner());

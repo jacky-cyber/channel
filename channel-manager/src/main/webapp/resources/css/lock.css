@@ -1,0 +1,35 @@
+.overlay {
+	background-repeat: no-repeat;
+	background-position: center;
+	display: none;
+	text-align: center;
+	vertical-align: middle;
+	height: 100%;
+	min-height: 500px;
+	min-width: 1280px;
+	width: 100%;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background-color: #4d4d4d;
+	opacity: 0.1;
+	z-index: 10000;
+}
+
+.clover {
+	background-repeat: no-repeat;
+	background-position: center;
+	text-align: center;
+	vertical-align: middle;
+	height: 100%;
+	min-height: 500px;
+	min-width: 1280px;
+	width: 100%;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background-color: transparent;
+	opacity: 1;
+	z-index: 100001;
+	background-image: url('../img/balls.svg');
+}

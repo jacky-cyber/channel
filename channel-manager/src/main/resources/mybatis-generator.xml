@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<classPathEntry
+		location="/home/jun/.m2/repository/mysql/mysql-connector-java/5.1.36/mysql-connector-java-5.1.36.jar" />
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressAllComments" value="false" />
+			<property name="suppressDate" value="false" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/channel" userId="channel"
+			password="com.zjht.channel">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.zjht.channel.manager.model"
+			targetProject="/home/jun/git_resp/channel/channel-manager/src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="com.zjht.channel.manager.mapping"
+			targetProject="/home/jun/git_resp/channel/channel-manager/src/main/resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.zjht.channel.manager.dao"
+			targetProject="/home/jun/git_resp/channel/channel-manager/src/main/java">
+			<property name="enableSubPackagenames" value="true" />
+		</javaClientGenerator>
+
+		<!-- <table schema="channel" tableName="channel_user"
+			domainObjectName="User">
+			<property name="useActualColumnNames" value="true" />
+			<generatedKey column="user_id" sqlStatement="MYSQL" identity="true"
+				type="pre" />
+			<columnOverride javaType="java.lang.Long" jdbcType="BIGINT" column="user_id" property="id" />
+			<columnOverride column="user_name" property="name" />
+			<columnOverride column="user_password" property="password" />
+			<columnOverride column="user_update_time" property="updateTime" />
+			<columnOverride column="user_remark" property="remark" />
+		</table>
+		
+		<table schema="channel" tableName="channel_whitelists"
+			domainObjectName="Whitelists">
+			<property name="useActualColumnNames" value="true" />
+			<generatedKey column="wl_id" sqlStatement="MYSQL" identity="true"
+				type="pre" />
+			<columnOverride javaType="java.lang.Long" jdbcType="BIGINT"
+				column="wl_id" property="id" />
+			<columnOverride column="wl_ip" property="ip" />
+			<columnOverride column="wl_hostname" property="hostname" />
+			<columnOverride column="wl_update_time" property="updateTime" />
+			<columnOverride column="wl_remark" property="remark" />
+		</table>
+
+		<table schema="channel" tableName="channel_security"
+			domainObjectName="Security">
+			<property name="useActualColumnNames" value="true" />
+			<generatedKey column="sec_id" sqlStatement="MYSQL" identity="true"
+				type="pre" />
+			<columnOverride javaType="java.lang.Long" jdbcType="BIGINT"
+				column="sec_id" property="id" />
+			<columnOverride column="sec_appno" property="appno" />
+			<columnOverride column="sec_key" property="key" />
+			<columnOverride column="sec_name" property="name" />
+			<columnOverride column="sec_update_time" property="updateTime" />
+			<columnOverride column="sec_remark" property="remark" />
+		</table>
+		
+		<table schema="channel" tableName="channel_service"
+			domainObjectName="Service">
+			<property name="useActualColumnNames" value="true" />
+			<generatedKey column="svc_id" sqlStatement="MYSQL" identity="true"
+				type="pre" />
+			<columnOverride javaType="java.lang.Long" jdbcType="BIGINT"
+				column="svc_id" property="id" />
+			<columnOverride column="svc_owner" property="owner" />
+			<columnOverride column="svc_organization" property="organization" />
+			<columnOverride column="svc_bean_id" property="beanId" />
+			<columnOverride column="svc_fully_qualified_name" property="fullyQualifiedName" />
+			<columnOverride column="svc_name" property="name" />
+			<columnOverride column="svc_version" property="version" />
+			<columnOverride column="svc_status" property="status" />
+			<columnOverride column="svc_update_time" property="updateTime" />
+			<columnOverride column="svc_remark" property="remark" />
+		</table>	 -->
+
+		<table schema="channel" tableName="channel_permission"
+			domainObjectName="Permission">
+			<property name="useActualColumnNames" value="true" />
+			<generatedKey column="per_id" sqlStatement="MYSQL" identity="true"
+				type="pre" />
+			<columnOverride column="per_id" property="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+			<columnOverride column="per_appno" property="appno" />
+			<columnOverride column="per_service_name" property="serviceName" />
+			<columnOverride column="per_service_version" property="serviceVersion" />
+			<columnOverride column="per_update_time" property="updateTime" />
+			<columnOverride column="per_remark" property="remark" />
+		</table>				
+	</context>
+</generatorConfiguration>

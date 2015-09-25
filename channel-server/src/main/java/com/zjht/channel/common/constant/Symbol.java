@@ -19,6 +19,8 @@ package com.zjht.channel.common.constant;
  * @since JDK 1.7
  */
 public enum Symbol {
+    OPEN_BRACE("{"),
+    CLOSE_BRACE("}"),
 	COMMA(","),
 	HYPHEN("-"),
 	SLASH("/"), 

@@ -9,14 +9,14 @@
   
 package com.zjht.channel.service.helper;  
 
-import javassist.ClassPool;
-import javassist.CtClass;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.zjht.channel.common.helper.FileHelper;
+import com.zjht.channel.helper.common.FileHelper;
 import com.zjht.channel.service.Service;
+
+import javassist.ClassPool;
+import javassist.CtClass;
  
 /** 
  * ClassName: DynamicClassLoader <br/> 

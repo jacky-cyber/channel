@@ -1,4 +1,7 @@
-import com.zjht.channel.service.Service;
+import org.springframework.stereotype.Service;
+
+import com.zjht.channel.helper.common.ListHelper;
+import com.zjht.channel.service.bean.Application;
 
 /** 
  * Project Name:channel-server 
@@ -18,29 +21,37 @@ import com.zjht.channel.service.Service;
  * @since JDK 1.7
  */
 public class Test {
-	public static void main(String[] args) {
-//		System.out.println(Symbol.COMMA.equals(","));
-//		System.out.println(Symbol.COMMA);
-//		System.out.println(Arrays.toString(StringHelper.split("/Zjht/get.tokenId/1.0", Symbol.SLASH.getCode())));
-/*	    long l1  = 1440391003000L;
-	    long l2 = 1441793599000L;
-	    long c = System.currentTimeMillis();
-	    System.out.println(c);
-	    System.out.println(c-l1);
-	    System.out.println(c-l2);
-	    
-	    SimpleDateFormat sdf  = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-	    //2015-08-17
-	    System.out.println(sdf.format(new Date(l1)));*/
-	    
-	   /* String[] strs = new String[]{"1","2","3"};
-	    Stream<String> stream = Stream.of(strs);
-	    stream.forEach(s->System.out.println(s));
-	    
-	    Queue<String> q  = Lists.newLinkedList();
-	    Stream.of(strs).forEach(s->q.offer(s));*/
-	    
-	    System.out.println(Service.class.getPackage().getImplementationVersion());
+            
+    public static void main(String[] args) throws InstantiationException, IllegalAccessException {
+        Application app = Application.class.newInstance(); 
+        Class<?> clazz = app.getClass();
+        
+        String[] ss = new String[]{"a","b"};
+        
+        ListHelper.listOf(ss).forEach(s->{
+            System.out.println(s);
+        });
+        
+       /* System.out.println(app);
+        try {
+            Field name = clazz.getDeclaredField("name");
+            name.setAccessible(true);
+            Method method = clazz.getDeclaredMethod("setName",String.class);
+           method.invoke(app, "test");
+            System.out.println(app);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
 	}
+    
+    public static <T> T newObject(Class<T> clazz){
+        T t = null;
+        try {
+            t = clazz.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return t;
+    }
 }
   

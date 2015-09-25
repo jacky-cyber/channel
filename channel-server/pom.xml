@@ -153,6 +153,13 @@
 			<version>${jodd.version}</version>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>com.zjht.channel.util</groupId>
+			<artifactId>channel-utilities</artifactId>
+			<version>0.1</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<finalName>birthday-email</finalName>
@@ -194,7 +201,7 @@
 		<profile>
 			<id>dev</id>
 			<properties>
-				<EVN.ZK.ADDRESS>172.16.104.147:2181,172.16.111.106:2181,172.16.111.107:2181</EVN.ZK.ADDRESS>
+				<ENV.ZK.ADDRESS>127.0.0.1:2181</ENV.ZK.ADDRESS>
 			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault>
@@ -203,13 +210,13 @@
 		<profile>
 			<id>test</id>
 			<properties>
-				<EVN.ZK.ADDRESS>172.16.104.147:2181,172.16.111.106:2181,172.16.111.107:2181</EVN.ZK.ADDRESS>
+				<ENV.ZK.ADDRESS>172.16.104.147:2181,172.16.111.106:2181,172.16.111.107:2181</ENV.ZK.ADDRESS>
 			</properties>
 		</profile>
 		<profile>
 			<id>prod</id>
 			<properties>
-				<EVN.ZK.ADDRESS>172.16.104.147:2181,172.16.111.106:2181,172.16.111.107:2181</EVN.ZK.ADDRESS>
+				<ENV.ZK.ADDRESS>172.16.104.147:2181,172.16.111.106:2181,172.16.111.107:2181</ENV.ZK.ADDRESS>
 			</properties>
 		</profile>
 	</profiles>

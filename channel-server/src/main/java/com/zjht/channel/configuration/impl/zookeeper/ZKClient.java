@@ -26,10 +26,10 @@ public interface ZKClient {
      * 
      * @author jun yangwenjun@chinaexpresscard.com
      * @param path
-     * @param bytes
+     * @param data
      * @since JDK 1.8
      */
-    void create(String path, byte[] bytes)  throws Exception ;
+    void create(String path, String data) ;
 
     /**
      * 
@@ -50,7 +50,7 @@ public interface ZKClient {
      * @param bytes
      * @since JDK 1.8
      */
-    void update(String path, byte[] bytes)  throws Exception;
+    void update(String path, String data);
 
     /**
      * 获取zookeeper指定目录下的子节点. <br/>
@@ -60,7 +60,7 @@ public interface ZKClient {
      * @return
      * @since JDK 1.8
      */
-    List<String> getChildren(String path)  throws Exception ;
+    List<String> getChildren(String path) ;
     
     /**
      * 
@@ -71,6 +71,17 @@ public interface ZKClient {
      * @return 
      * @since JDK 1.8
      */
-    byte[] getData(String path);
+    String getData(String path);
+    
+    /**
+     * 判断路径是否存在
+     * 
+     * @author jun
+     * @param path
+     * @return 
+     * @since JDK 1.8
+     */
+    boolean exists(String path);
 
+    
 }

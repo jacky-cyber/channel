@@ -11,7 +11,7 @@ package com.zjht.channel.service.helper;
 
 import com.google.common.base.Preconditions;
 import com.zjht.channel.common.constant.Symbol;
-import com.zjht.channel.common.helper.StringHelper;
+import com.zjht.channel.helper.common.StringHelper;
  
 /** 
  * ClassName: ServiceHelper <br/> 
@@ -42,6 +42,10 @@ public final class ServiceHelper {
         return svrName.concat(Symbol.HYPHEN.code()).concat(svrVersion);
     }
     
+    
+    public static void test(){
+        
+    }
     
 }
   

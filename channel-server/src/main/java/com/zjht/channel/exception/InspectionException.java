@@ -1,47 +1,31 @@
-/** 
- * Project Name:channel-server 
- * File Name:RegulationException.java 
- * Package Name:com.zjht.channel.exception 
- * Date:2015年8月28日下午3:36:33 
- * 
- */
-
 package com.zjht.channel.exception;
 
+import com.zjht.channel.common.constant.RespCode;
+
 /**
- * ClassName: InspectionException <br/>
- * Function: 规则检查异常类 <br/>
- * date: 2015年8月28日 下午3:36:33 <br/>
+ *  规则检查异常类
  * 
- * @author jun yangwenjun@chinaexpresscard.com
- * @version v0.0.1
+ * @author jun
+ * @version v0.1
  * @since JDK 1.8
+ * @date Sep 23, 2015 9:36:21 AM
  */
-public class InspectionException extends RuntimeException {
+public class InspectionException extends ApplicationException {
+
+    /** 
+     * Creates a new instance of InspectionException. 
+     * 
+     * @param code
+     * @param message 
+     */  
+    public InspectionException(String code, String message) {
+        super(code, message);
+        // TODO Auto-generated constructor stub
+    }
 
     /**
      * @since JDK 1.8
      */
     private static final long serialVersionUID = 2505678993540507870L;
-
-    private String code;
-    private String message;
-
-    public InspectionException() {
-        super();
-    }
-
-    public InspectionException(String code, String message) {
-        super(message);
-        this.code    = code;
-        this.message = message;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
+  
 }
